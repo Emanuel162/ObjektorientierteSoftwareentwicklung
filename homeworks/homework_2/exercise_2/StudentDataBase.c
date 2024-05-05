@@ -1,13 +1,16 @@
-//
-// Created by Emanu on 03.05.2024.
-//
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
-//TODO: Add struct Student
+struct Student {
+    int matNr;
+    char* name;
+};
 
-//TODO: Add struct StudentDataBase
+struct StudentDataBase {
+    int size;
+    struct Student *data;
+};
 
 int addStudentsToDataBase(struct StudentDataBase* sDB) {
     for(int i = 0; i < sDB->size; i++) {
@@ -33,11 +36,11 @@ void deleteStudentDB(struct StudentDataBase* sDB) {
     if(sDB != NULL) {
         if(sDB->data != NULL) {
             for(int i = 0; i < sDB->size; i++) {
-                //TODO: Free student name
+                free(sDB->data[i].name);
             }
-            //TODO: Free data field of Student Database
+            free(sDB->data);
         }
-        //TODO: Free Database
+        free(sDB);
     }
 }
 
@@ -46,9 +49,9 @@ int main(int argc, char** argv) {
     printf("Please enter how many students you want to store: ");
     scanf("%d", &number);
 
-    struct StudentDataBase* sDB = //TODO: Allocate memory for Student Database
+    struct StudentDataBase* sDB = malloc(sizeof(struct StudentDataBase));
     if(sDB != NULL) {
-        sDB->data = //TODO: Allocate memory for data field
+        sDB->data = malloc(sizeof(struct Student)*number);
         if(sDB->data != NULL) {
             sDB->size = number;
 
