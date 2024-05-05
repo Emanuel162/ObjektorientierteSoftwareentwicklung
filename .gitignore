@@ -1,3 +1,6 @@
+# C Run Files
+*.exe
+
 # IntelliJ
 /.idea
 
